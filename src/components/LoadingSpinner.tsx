@@ -37,18 +37,21 @@ export default function LoadingSpinner() {
           className="mb-8"
         >
           <div className="flex items-center justify-center space-x-3 mb-4">
-            <motion.div
+            {/* Spinning Logo Image */}
+            <motion.img
+              src="/logo.png"
+              alt="Novatos AI Logo"
               animate={{ rotate: 360 }}
               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              className="w-12 h-12 bg-gradient-to-r from-primary-500 to-primary-400 rounded-xl flex items-center justify-center shadow-glow"
-            >
-              <Brain className="w-7 h-7 text-black" />
-            </motion.div>
+              className="w-12 h-12 rounded-xl shadow-glow"
+            />
+            {/* Brand Text */}
             <h1 className="text-3xl font-bold text-white-soft">
               Novatos AI
             </h1>
           </div>
         </motion.div>
+
 
         {/* Loading animation */}
         <motion.div
@@ -87,7 +90,7 @@ export default function LoadingSpinner() {
                 </linearGradient>
               </defs>
             </svg>
-            
+
             {/* Center icon */}
             <div className="absolute inset-0 flex items-center justify-center">
               <motion.div
@@ -131,11 +134,10 @@ export default function LoadingSpinner() {
           ].map((step, index) => (
             <motion.div
               key={index}
-              className={`flex items-center justify-center space-x-2 text-sm transition-all duration-300 ${
-                progress >= step.threshold 
-                  ? 'text-primary-400' 
+              className={`flex items-center justify-center space-x-2 text-sm transition-all duration-300 ${progress >= step.threshold
+                  ? 'text-primary-400'
                   : 'text-white-muted'
-              }`}
+                }`}
             >
               <motion.div
                 animate={progress >= step.threshold ? { scale: [1, 1.2, 1] } : {}}

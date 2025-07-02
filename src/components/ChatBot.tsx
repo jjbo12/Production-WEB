@@ -1,94 +1,61 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageCircle, X, Send, Calendar, Clock, User, Phone, Mail, Sparkles, Bot, Zap } from 'lucide-react';
+import { MessageCircle, X, Send, Calendar, User, Bot } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { flushSync } from 'react-dom';
 import { ChatMessage, AppointmentData } from '../types';
 import { ragService } from '../services/ragService';
 import { sendBookingEmail } from '../services/emailService';
 
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    {
-      id: '1',
-      text: 'Hi there! 👋 I\'m Nova, your virtual assistant from Novatos AI. Want to explore our AI automation services for dental clinics or book a free demo? ✨',
-      sender: 'bot',
-      timestamp: new Date(),
-    },
-  ]);
+  const [messages, setMessages] = useState<ChatMessage[]>([{
+    id: '1',
+    text: "Hi there! 👋 I'm Nova, your virtual assistant from Novatos AI. Want to explore our AI automation services for dental clinics or book a free demo? ✨",
+    sender: 'bot',
+    timestamp: new Date(),
+  }]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [isInputDisabled, setIsInputDisabled] = useState(false);
   const [showAppointmentForm, setShowAppointmentForm] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [, forceRender] = useState(0);
 
   const [appointmentData, setAppointmentData] = useState<AppointmentData>({
-    name: '',
-    email: '',
-    phone: '',
-    service: '',
-    date: '',
-    time: '',
+    name: '', email: '', phone: '', service: '', date: '', time: '',
   });
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   useEffect(() => {
-    scrollToBottom();
+    setTimeout(() => {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 0);
   }, [messages, isTyping]);
 
-  // Smart intent detection
-  const detectIntent = (message: string): string | null => {
-    const lowerMsg = message.toLowerCase();
-    
-    // Greeting patterns
-    if (lowerMsg.match(/\b(hi|hello|hey|good morning|good afternoon|good evening)\b/)) {
-      return 'greeting';
-    }
-    
-    // Demo/booking patterns
-    if (lowerMsg.match(/\b(demo|book|schedule|appointment|meeting|call|consultation)\b/)) {
-      return 'booking';
-    }
-    
-    // Pricing patterns
-    if (lowerMsg.match(/\b(price|pricing|cost|how much|plans|packages)\b/)) {
-      return 'pricing';
-    }
-    
-    // Features patterns
-    if (lowerMsg.match(/\b(features|what do you do|services|capabilities|ai|chatbot)\b/)) {
-      return 'features';
-    }
-    
-    // Contact patterns
-    if (lowerMsg.match(/\b(contact|phone|email|reach|support|help)\b/)) {
-      return 'contact';
-    }
-    
+  useEffect(() => {
+    if (isOpen && inputRef.current) inputRef.current.focus();
+  }, [isOpen]);
+
+  const detectIntent = (msg: string): string | null => {
+    const lowerMsg = msg.toLowerCase();
+    if (lowerMsg.match(/\b(hi|hello|hey|good morning|good afternoon|good evening)\b/)) return 'greeting';
+    if (lowerMsg.match(/\b(demo|book|schedule|appointment|meeting|call|consultation)\b/)) return 'booking';
+    if (lowerMsg.match(/\b(price|pricing|cost|how much|plans|packages)\b/)) return 'pricing';
+    if (lowerMsg.match(/\b(features|what do you do|services|capabilities|ai|chatbot)\b/)) return 'features';
+    if (lowerMsg.match(/\b(contact|phone|email|reach|support|help|\?)\b/)) return 'contact';
+    if (lowerMsg.match(/\b(ok|thanks|k)\b/)) return 'bye';
     return null;
   };
 
   const getSmartResponse = (intent: string): string => {
     switch (intent) {
-      case 'greeting':
-        return "Welcome! 👋 I'm excited to help you transform your dental practice with AI. Are you interested in:\n\n🤖 Learning about our AI chatbot features\n📅 Booking a free demo\n💰 Viewing our pricing plans\n\nWhat sounds most interesting to you?";
-      
-      case 'booking':
-        return "Perfect! I'd love to help you book a free demo. 📅 Our demos are personalized 30-minute sessions where we'll show you exactly how our AI can transform your practice.\n\nWould you like me to collect your details now, or would you prefer to book directly through our calendar? 🗓️";
-      
-      case 'pricing':
-        return "Great question! 💰 We have three flexible plans:\n\n🚀 **Starter** - $199/month (Perfect for small practices)\n⭐ **Professional** - $499/month (Most popular - includes advanced AI)\n🏢 **Enterprise** - Custom pricing (For large practices)\n\nAll plans include a 14-day free trial! Would you like me to explain any specific plan or book a demo to see the value firsthand? ✨";
-      
-      case 'features':
-        return "Excellent! 🤖 Our AI platform includes:\n\n✅ Smart chatbots trained on your clinic data\n✅ 24/7 automated appointment booking\n✅ Lead capture & CRM integration\n✅ HIPAA-compliant security\n✅ 95% accuracy in patient responses\n✅ Multi-platform deployment\n\nWhich feature interests you most? I can dive deeper into any of these! 🚀";
-      
-      case 'contact':
-        return "I'm here to help! 💬 Here are the best ways to reach us:\n\n📧 **Email**: hello.novatosai@gmail.com\n📞 **Phone**: +92 332 0313358\n🗓️ **Book Demo**: https://calendly.com/ainovatos/30min\n\nFor immediate assistance, I'm right here! What specific questions can I answer for you? ✨";
-      
-      default:
-        return '';
+      case 'greeting': return "Hi! How can I assist you today?";
+      case 'booking': return "Want to book a free demo? Just say 'book demo' or fill the form.";
+      case 'pricing': return "Starter: $199/mo, Pro: $499/mo, Enterprise: Custom. Want more info?";
+      case 'features': return "AI chatbot, booking automation, CRM, HIPAA secure. Need details?";
+      case 'bye': return "pleasure, if you want any other info you can ask.";
+      case 'contact': return "Email: hello.novatosai@gmail.com | Phone: +92 332 0313358";
+      default: return '';
     }
   };
 
@@ -102,120 +69,55 @@ export default function ChatBot() {
       timestamp: new Date(),
     };
 
-    setMessages(prev => [...prev, userMessage]);
+    flushSync(() => {
+      setMessages(prev => [...prev, userMessage]);
+      setIsTyping(true);
+      setIsInputDisabled(true);
+    });
     setInputValue('');
-    setIsTyping(true);
-    setIsInputDisabled(true);
 
     try {
-      // Detect intent for smart responses
-      const intent = detectIntent(inputValue);
+      const intent = detectIntent(userMessage.text);
       let response = '';
 
       if (intent) {
         response = getSmartResponse(intent);
-        
-        // Trigger appointment form for booking intent
-        if (intent === 'booking') {
-          setTimeout(() => setShowAppointmentForm(true), 2000);
-        }
+        if (intent === 'booking') setTimeout(() => setShowAppointmentForm(true), 1000);
       } else {
-        // Use RAG service for complex queries
-        response = await ragService.generateResponse(inputValue);
+        response = await ragService.generateResponse(userMessage.text);
+        if (!response || response.trim().length < 2) {
+          response = "I'm not sure how to respond to that. Could you rephrase or ask something else?";
+        }
       }
 
-      // Simulate realistic typing delay
-      const typingDelay = Math.min(Math.max(response.length * 20, 1000), 3000);
-      
       setTimeout(() => {
-        const botResponse: ChatMessage = {
+        flushSync(() => {
+          setMessages(prev => [...prev, {
+            id: Date.now().toString(),
+            text: response,
+            sender: 'bot',
+            timestamp: new Date(),
+          }]);
+          setIsTyping(false);
+          setIsInputDisabled(false);
+        });
+        forceRender(n => n + 1);
+      }, 300);
+
+    } catch (err) {
+      console.error(err);
+      flushSync(() => {
+        setMessages(prev => [...prev, {
           id: Date.now().toString(),
-          text: response + "\n\n💡 Need immediate help? Call us at +92 332 0313358 or email hello.novatosai@gmail.com",
+          text: "I'm facing a technical issue. Please email us at hello.novatosai@gmail.com",
           sender: 'bot',
           timestamp: new Date(),
-        };
-
-        setMessages(prev => [...prev, botResponse]);
+        }]);
         setIsTyping(false);
         setIsInputDisabled(false);
-      }, typingDelay);
-
-    } catch (error) {
-      setTimeout(() => {
-        const errorResponse: ChatMessage = {
-          id: Date.now().toString(),
-          text: "I apologize, but I'm having trouble processing your request right now. 😅\n\nPlease try again or contact us directly:\n📞 +92 332 0313358\n📧 hello.novatosai@gmail.com",
-          sender: 'bot',
-          timestamp: new Date(),
-        };
-        setMessages(prev => [...prev, errorResponse]);
-        setIsTyping(false);
-        setIsInputDisabled(false);
-      }, 1500);
-    }
-  };
-
-  const handleAppointmentSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    try {
-      const emailSent = await sendBookingEmail(appointmentData);
-      
-      const confirmationMessage: ChatMessage = {
-        id: Date.now().toString(),
-        text: `Perfect! ✅ I've collected your information for a demo appointment:
-        
-📅 **Date**: ${appointmentData.date} at ${appointmentData.time}
-👤 **Name**: ${appointmentData.name}
-📧 **Email**: ${appointmentData.email}
-📞 **Phone**: ${appointmentData.phone}
-🤖 **Service**: ${appointmentData.service}
-
-${emailSent ? '🎉 Our team has been notified and will contact you within 24 hours to confirm your demo appointment!' : '📝 We\'ve recorded your request and will contact you within 24 hours to confirm your demo appointment.'} 
-
-You can also book directly through our calendar: https://calendly.com/ainovatos/30min
-
-Is there anything else I can help you with? 💬`,
-        sender: 'bot',
-        timestamp: new Date(),
-      };
-
-      setMessages(prev => [...prev, confirmationMessage]);
-      setShowAppointmentForm(false);
-      setAppointmentData({
-        name: '',
-        email: '',
-        phone: '',
-        service: '',
-        date: '',
-        time: '',
       });
-    } catch (error) {
-      console.error('Error submitting appointment:', error);
-      const errorMessage: ChatMessage = {
-        id: Date.now().toString(),
-        text: 'There was an issue submitting your appointment. 😅 Please try booking directly at https://calendly.com/ainovatos/30min or contact us at hello.novatosai@gmail.com',
-        sender: 'bot',
-        timestamp: new Date(),
-      };
-      setMessages(prev => [...prev, errorMessage]);
     }
   };
-
-  const services = [
-    'AI Chatbot Development',
-    'Appointment Booking Automation',
-    'Lead Generation System',
-    'CRM Integration',
-    'Customer Support Automation',
-    'Multi-Platform Deployment',
-    'Custom AI Solutions',
-  ];
-
-  const timeSlots = [
-    '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM',
-    '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM'
-  ];
 
   return (
     <>

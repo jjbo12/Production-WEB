@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Brain } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -45,13 +46,13 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <motion.div
+            <motion.img
+              src="/logo.png" // ✅ correct way to use public assets
+              alt="Novatos AI Logo"
               whileHover={{ scale: 1.05, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
-              className="w-10 h-10 bg-gradient-to-r from-primary-500 to-primary-400 rounded-xl flex items-center justify-center shadow-glow group-hover:shadow-glow-lg transition-all duration-300"
-            >
-              <Brain className="w-6 h-6 text-black" />
-            </motion.div>
+              className="h-10 w-auto rounded-xl shadow-glow group-hover:shadow-glow-lg transition-all duration-300"
+            />
             <span className="text-2xl font-bold text-white-soft group-hover:text-white transition-colors duration-300">
               Novatos AI
             </span>
