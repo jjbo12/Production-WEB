@@ -7,7 +7,7 @@ export default function Pricing() {
   const plans: PricingPlan[] = [
     {
       name: 'Starter',
-      price: '$199',
+      price: '$60',
       period: '/month',
       description: 'Perfect for small dental practices getting started with AI automation',
       features: [
@@ -22,7 +22,7 @@ export default function Pricing() {
     },
     {
       name: 'Professional',
-      price: '$499',
+      price: '$150',
       period: '/month',
       description: 'Advanced features for growing practices that want comprehensive automation',
       features: [
@@ -75,9 +75,29 @@ export default function Pricing() {
       answer: 'We\'ll notify you when you\'re approaching your limit. You can upgrade your plan or purchase additional conversations.'
     },
     {
-      question: 'Do you offer annual billing discounts?',
-      answer: 'Yes! Save 20% when you pay annually. Contact us for annual pricing details.'
-    }
+      question: 'What types of businesses can benefit from Novatos AI solutions?',
+      answer: 'Our AI solutions are designed for businesses of all sizes across various industries including e-commerce, healthcare, finance, real estate, hospitality, and professional services. Whether youre a startup looking to automate customer support or an enterprise seeking to optimize complex workflows, we have tailored solutions for your needs.'
+    },
+    {
+      question: 'How long does it take to implement an AI solution?',
+      answer: 'Implementation timelines vary based on complexity. Simple chatbot integrations can be deployed within 1-2 weeks, while comprehensive automation workflows may take 4-8 weeks. We provide detailed project timelines during our discovery call and keep you updated throughout the process.'
+    },
+    {
+      question: 'Do I need technical knowledge to use your AI solutions?',
+      answer: 'Not at all! Our solutions are designed to be user-friendly and require no technical expertise. We provide comprehensive training, documentation, and ongoing support to ensure you can leverage the full potential of your AI implementation.'
+    },
+    {
+      question: 'Can your AI solutions integrate with my existing systems?',
+      answer: 'Yes, our AI solutions are built to integrate seamlessly with popular platforms like CRM systems, e-commerce platforms, social media, email marketing tools, and more. We conduct a thorough analysis of your current tech stack to ensure smooth integration'
+    },
+    {
+      question: 'What kind of ROI can I expect from AI automation?',
+      answer: 'Our clients typically see 30-70% reduction in operational costs, 50% faster response times, and 40% increase in customer satisfaction within the first 6 months. Specific ROI varies based on your business model and implementation scope.'
+    },
+    {
+      question: 'Do you provide ongoing support and maintenance?',
+      answer: 'Absolutely! We offer comprehensive support packages including regular updates, performance monitoring, troubleshooting, and optimization. Our team is available to ensure your AI solutions continue to deliver optimal results as your business grows.'
+    },
   ];
 
   return (
@@ -90,7 +110,7 @@ export default function Pricing() {
             <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent"> Pricing</span>
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
-            Choose the perfect plan for your dental practice. Start with a 14-day free trial, no credit card required.
+            Choose the perfect plan for your business. Enjoy a 14-day free trial—no credit card needed.
           </p>
           <div className="inline-flex items-center bg-accent-50 dark:bg-accent-900/20 text-accent-700 dark:text-accent-300 px-4 py-2 rounded-full text-sm font-medium">
             <Star className="w-4 h-4 mr-2" />
@@ -106,11 +126,10 @@ export default function Pricing() {
             {plans.map((plan, index) => (
               <div
                 key={index}
-                className={`relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ${
-                  plan.highlighted 
-                    ? 'ring-2 ring-primary-500 transform scale-105' 
+                className={`relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ${plan.highlighted
+                    ? 'ring-2 ring-primary-500 transform scale-105'
                     : 'border border-gray-200 dark:border-gray-700'
-                }`}
+                  }`}
               >
                 {plan.highlighted && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -119,7 +138,7 @@ export default function Pricing() {
                     </div>
                   </div>
                 )}
-                
+
                 <div className="p-8">
                   <div className="text-center mb-8">
                     <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
@@ -151,11 +170,10 @@ export default function Pricing() {
 
                   <Link
                     to="/contact"
-                    className={`w-full px-6 py-3 rounded-lg font-semibold text-center block transition-all duration-300 ${
-                      plan.highlighted
+                    className={`w-full px-6 py-3 rounded-lg font-semibold text-center block transition-all duration-300 ${plan.highlighted
                         ? 'bg-primary-600 text-white hover:bg-primary-700 shadow-lg hover:shadow-xl'
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600'
-                    }`}
+                      }`}
                   >
                     {plan.name === 'Enterprise' ? 'Contact Sales' : 'Start Free Trial'}
                   </Link>
@@ -202,9 +220,9 @@ export default function Pricing() {
                   ['AI Response Quality', 'Basic', 'Advanced RAG', 'Custom AI'],
                   ['Appointment Booking', 'Basic', 'Smart Booking', 'Advanced + Preferences'],
                   ['Support', 'Email', 'Phone + Email', 'Dedicated Manager'],
-                  ['Custom Branding', <X className="w-5 h-5 text-red-500" />, <Check className="w-5 h-5 text-green-500" />, <Check className="w-5 h-5 text-green-500" />],
-                  ['Multi-location', <X className="w-5 h-5 text-red-500" />, <X className="w-5 h-5 text-red-500" />, <Check className="w-5 h-5 text-green-500" />],
-                  ['API Access', <X className="w-5 h-5 text-red-500" />, <X className="w-5 h-5 text-red-500" />, <Check className="w-5 h-5 text-green-500" />]
+                  ['Custom Branding', 'N/A', 'Include', 'Include'],
+                  ['Multi-location', 'N/A', 'N/A', 'Include'],
+                  ['API Access', 'N/A', 'N/A', 'Include']
                 ].map(([feature, starter, pro, enterprise], index) => (
                   <tr key={index}>
                     <td className="py-4 px-6 text-gray-900 dark:text-white font-medium">
@@ -261,7 +279,7 @@ export default function Pricing() {
             Ready to Get Started?
           </h2>
           <p className="text-xl text-white/90 mb-8">
-            Join hundreds of dental practices already using AI to grow their business
+            Join hundreds of businesses already using AI to grow, streamline, and scale their operations.
           </p>
           <Link
             to="/contact"

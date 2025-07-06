@@ -34,12 +34,12 @@ export default function About() {
     {
       icon: <Target className="w-8 h-8" />,
       title: 'Innovation First',
-      description: 'We leverage cutting-edge AI technology to solve real problems in dental practice management.'
+      description: 'We leverage cutting-edge AI technology to solve real problems in business practice management.'
     },
     {
       icon: <Users className="w-8 h-8" />,
-      title: 'Patient-Centric',
-      description: 'Every solution we build prioritizes improving the patient experience and accessibility to care.'
+      title: 'Customer-Centric',
+      description: 'We design every solution with your customers in mind—making interactions smoother, faster, and more accessible.'
     },
     {
       icon: <Award className="w-8 h-8" />,
@@ -49,8 +49,8 @@ export default function About() {
   ];
 
   const stats = [
-    { number: '500+', label: 'Clinics Served' },
-    { number: '50K+', label: 'Appointments Booked' },
+    { number: '100+', label: 'Buinesses Served' },
+    { number: '10K+', label: 'Appointments Booked' },
     { number: '95%', label: 'Customer Satisfaction' },
     { number: '24/7', label: 'Support Available' }
   ];
@@ -62,12 +62,11 @@ export default function About() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              Transforming Dental Care with
+              Transforming Business with
               <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent"> Artificial Intelligence</span>
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              We're on a mission to make dental practices more efficient, patients happier, 
-              and healthcare more accessible through intelligent automation.
+              We're on a mission to make businesses more efficient, customers happier, and services more accessible through intelligent automation.
             </p>
           </div>
 
@@ -101,10 +100,7 @@ export default function About() {
                 </h2>
               </div>
               <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
-                To revolutionize dental practice operations by providing intelligent, 
-                accessible AI solutions that enhance patient care, streamline administrative 
-                tasks, and empower dental professionals to focus on what they do best - 
-                providing exceptional healthcare.
+                To revolutionize business operations by providing intelligent, accessible AI solutions that enhance customer experience, streamline administrative tasks, and empower professionals to focus on what they do best—delivering exceptional service.
               </p>
             </div>
 
@@ -118,9 +114,7 @@ export default function About() {
                 </h2>
               </div>
               <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
-                To become the leading AI platform for healthcare practices, creating a 
-                world where technology seamlessly enhances human care, making quality 
-                healthcare more accessible, efficient, and patient-centered for everyone.
+                To become the leading AI platform for businesses, creating a world where technology seamlessly enhances human service—making quality solutions more accessible, efficient, and customer-focused for everyone..
               </p>
             </div>
           </div>
@@ -211,31 +205,19 @@ export default function About() {
 
           <div className="prose prose-lg mx-auto text-gray-600 dark:text-gray-300">
             <p className="text-xl leading-relaxed mb-6">
-              Novatos AI was born from a simple observation: dental practices were drowning in 
-              administrative tasks while patients struggled to get timely responses to their questions 
-              and book appointments outside of business hours.
+              Novatos AI was born from a simple observation: businesses were overwhelmed by repetitive tasks, missed leads, and a growing demand for 24/7 customer interaction.
             </p>
-            
+
             <p className="text-lg leading-relaxed mb-6">
-              Our founders, Jibran Jalali and Ayan Humayoun, recognized this challenge after 
-              working closely with healthcare providers and witnessing the inefficiencies that 
-              plagued dental practices. They saw how staff spent countless hours answering the same 
-              questions repeatedly, managing appointment schedules, and trying to keep up with 
-              patient inquiries after hours.
+              Our founders, Jibran Jalali and Ayan Humayoun, saw this challenge firsthand while working with service providers across industries. They noticed how teams spent countless hours answering the same customer questions, juggling schedules, and struggling to respond outside business hours—leading to missed opportunities and burnout.
             </p>
-            
+
             <p className="text-lg leading-relaxed mb-6">
-              In 2023, our team came together to create a solution that would revolutionize how 
-              dental practices interact with their patients. We developed the first AI chatbot 
-              specifically designed for dental practices, trained on real dental data and equipped 
-              with the ability to handle complex appointment scheduling and patient inquiries.
+              In 2023, our team came together to build a smarter solution. We created an AI-powered chatbot platform designed to streamline operations, automate interactions, and enhance customer experience—trained on real business data and ready to handle everything from lead capture to booking and support.
             </p>
-            
+
             <p className="text-lg leading-relaxed">
-              Today, Novatos AI serves over 500 dental practices across multiple countries, helping 
-              them provide better patient care while reducing administrative burden. Based in 
-              Karachi, Pakistan, we're just getting started on our mission to transform healthcare 
-              through intelligent automation.
+              Today, Novatos AI powers 100+ businesses across multiple countries, helping them deliver better service while reducing the administrative load. Based in Karachi, Pakistan, we’re just getting started on our mission to transform how businesses grow—with intelligent, accessible automation.
             </p>
           </div>
         </div>
@@ -248,7 +230,7 @@ export default function About() {
             Ready to Join Our Mission?
           </h2>
           <p className="text-xl text-white/90 mb-8">
-            Let's transform your dental practice together
+            Let's transform your business practice together
           </p>
           <Link
             to="/contact"

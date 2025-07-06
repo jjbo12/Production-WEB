@@ -18,13 +18,20 @@ export default function Footer() {
             >
               <div className="flex items-center space-x-3 mb-6">
                 <div className="w-10 h-10 bg-gradient-to-r from-primary-500 to-primary-400 rounded-xl flex items-center justify-center shadow-glow">
-                  <Brain className="w-6 h-6 text-black" />
+                  {/* <Brain className="w-6 h-6 text-black" /> */}
+                  <motion.img
+                                src="/logo.png" // ✅ correct way to use public assets
+                                alt="Novatos AI Logo"
+                                whileHover={{ scale: 1.05, rotate: 5 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="h-10 w-auto rounded-xl shadow-glow group-hover:shadow-glow-lg transition-all duration-300"
+                              />
                 </div>
                 <span className="text-2xl font-bold text-white-soft">Novatos AI</span>
               </div>
               <p className="text-white-muted mb-8 max-w-md leading-relaxed">
-                Transforming dental clinics with AI-powered automation. 24/7 chatbots, 
-                intelligent appointment booking, and seamless patient support.
+                Transforming your business with AI-powered automation. 24/7 chatbots, 
+                intelligent appointment booking, and seamless support.
               </p>
               <div className="flex space-x-4">
                 <motion.a 

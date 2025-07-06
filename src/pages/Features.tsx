@@ -1,12 +1,13 @@
 import React from 'react';
 import { Bot, Calendar, MessageSquare, Users, BarChart3, Shield, Clock, Zap, Phone, Mail, CreditCard, Globe } from 'lucide-react';
+import Pricing from './Pricing';
 
 export default function Features() {
   const mainFeatures = [
     {
       icon: <Bot className="w-8 h-8" />,
       title: 'AI Chatbot with RAG',
-      description: 'Intelligent chatbot trained on your clinic-specific data using Retrieval-Augmented Generation (RAG) technology.',
+      description: 'Intelligent chatbot trained on your business-specific data using advanced Retrieval-Augmented Generation (RAG) technology.',
       features: [
         'Custom training on your FAQ and policies',
         'Natural language understanding',
@@ -28,9 +29,9 @@ export default function Features() {
     {
       icon: <MessageSquare className="w-8 h-8" />,
       title: 'Automated FAQs',
-      description: 'Instant answers to common patient questions with 95% accuracy rate.',
+      description: 'Instant answers to common customer questions with a 95% accuracy rate.',
       features: [
-        'Pre-built dental FAQ database',
+        'Pre-built business FAQ database',
         'Custom FAQ creation and management',
         'Smart escalation to human staff',
         'Continuous learning from interactions'
@@ -53,42 +54,50 @@ export default function Features() {
     {
       icon: <BarChart3 className="w-6 h-6" />,
       title: 'Analytics & Reporting',
-      description: 'Detailed insights into patient interactions and booking patterns'
+      Price: '$19/month',
+      description: 'Track leads, chatbot conversations, drop-offs, and frequently asked questions'
     },
     {
       icon: <Shield className="w-6 h-6" />,
-      title: 'HIPAA Compliance',
-      description: 'Enterprise-grade security for patient data protection'
+      title: 'Multi-Platform Integration',
+      Price: '$29 per channel',
+      description: 'Deploy your chatbot on Instagram, WhatsApp, Facebook, or your website'
     },
     {
       icon: <Clock className="w-6 h-6" />,
-      title: 'Real-time Notifications',
-      description: 'Instant alerts for new appointments and urgent inquiries'
+      title: 'CRM & Data Integration',
+      Price: '$39 one-time',
+      description: 'Automatically send lead data to Google Sheets or CRMs like HubSpot or Pipedrive'
     },
     {
       icon: <Zap className="w-6 h-6" />,
-      title: 'Quick Setup',
-      description: 'Get started in minutes with our simple onboarding process'
+      title: 'Lead Follow-Up',
+      Price: '$59 one-time',
+      description: 'Automated WhatsApp or email follow-ups 24 hours after new inquiries'
     },
     {
       icon: <Phone className="w-6 h-6" />,
-      title: 'Voice Integration',
-      description: 'Voice-enabled interactions for accessibility'
+      title: 'Appointment Reminders',
+      Price: 'Included in Nova Pro',
+      description: 'Reduce no-shows with automated SMS, WhatsApp, and email reminders before appointments'
     },
     {
       icon: <Mail className="w-6 h-6" />,
-      title: 'Email Automation',
-      description: 'Automated email sequences for appointments and follow-ups'
+      title: 'FAQ Brain Pack',
+      Price: 'Included in all packages',
+      description: 'We preload 15–30 FAQs tailored to your business so your bot sounds intelligent and on-brand'
     },
     {
       icon: <CreditCard className="w-6 h-6" />,
-      title: 'Payment Processing',
-      description: 'Secure payment collection for appointments and services'
+      title: 'Voice Assistant',
+      Price: 'Custom Quote',
+      description: 'AI-powered voice agent to handle inbound calls, qualify leads, or redirect callers'
     },
     {
       icon: <Globe className="w-6 h-6" />,
-      title: 'Multi-Platform',
-      description: 'Deploy on website, social media, and messaging platforms'
+      title: 'Quick Setup & Onboarding',
+      Price: 'Free with all packages',
+      description: 'Get started in minutes with fast, guided chatbot setup and onboarding'
     }
   ];
 
@@ -99,10 +108,10 @@ export default function Features() {
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
             Powerful Features for
-            <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent"> Modern Dental Practices</span>
+            <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent"> Modern Business Practices</span>
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Everything you need to automate patient interactions, streamline operations, and grow your practice with AI-powered solutions.
+            Everything you need to automate customer interactions, streamline operations, and grow your business with AI-powered solutions.
           </p>
         </div>
       </section>
@@ -148,10 +157,10 @@ export default function Features() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Plus Many More Features
+              Adds on Features
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300">
-              Comprehensive functionality designed for dental practice success
+              Comprehensive functionality designed for business success
             </p>
           </div>
 
@@ -170,6 +179,9 @@ export default function Features() {
                 <p className="text-gray-600 dark:text-gray-300 text-sm">
                   {feature.description}
                 </p>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  {feature.Price}
+                </h3>
               </div>
             ))}
           </div>
@@ -188,7 +200,7 @@ export default function Features() {
           <div className="bg-white/10 rounded-2xl p-8 backdrop-blur-sm">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-white">
               <div className="text-center">
-                <div className="text-3xl font-bold mb-2">5 min</div>
+                <div className="text-3xl font-bold mb-2">48 min</div>
                 <div className="text-white/90">Setup Time</div>
               </div>
               <div className="text-center">

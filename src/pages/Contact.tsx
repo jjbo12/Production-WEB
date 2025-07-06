@@ -54,7 +54,7 @@ export default function Contact() {
             <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent"> Your Free Demo</span>
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
-            Ready to transform your dental practice? Schedule a personalized demo and see 
+            Ready to transform your business practice? Schedule a personalized demo and see 
             how our AI solutions can help you grow your business.
           </p>
           <button
@@ -77,7 +77,7 @@ export default function Contact() {
                 Let's Connect
               </h2>
               <p className="text-gray-600 dark:text-gray-300 mb-8">
-                Our team of dental AI experts is here to help you understand how our 
+                Our team of AI experts is here to help you understand how our 
                 solutions can benefit your practice. Get in touch to schedule your 
                 personalized demo.
               </p>
