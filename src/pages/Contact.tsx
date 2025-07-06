@@ -99,7 +99,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900 dark:text-white">Phone</h3>
-                    <p className="text-gray-600 dark:text-gray-300">+92 (300) 123-4567</p>
+                    <p className="text-gray-600 dark:text-gray-300">+92 332 0313358</p>
                   </div>
                 </div>
 
